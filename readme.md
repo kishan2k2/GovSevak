@@ -44,7 +44,7 @@ We envision continuous improvement and expansion of our project. Future enhancem
 
 ## Feedback
 
-We welcome your feedback to improve our project. If you encounter any issues, have suggestions, or want to collaborate, please reach out to us via [email] or [GitHub].
+We welcome your feedback to improve our project. If you encounter any issues, have suggestions, or want to collaborate, please reach out to us via [payadikishan@gmail.com] or [[GitHub](https://github.com/kishan2k2/NLP-Project)].
 
 Thank you for joining us on this journey to empower citizens with information about government welfare schemes!
 

@@ -85,7 +85,7 @@ genai.configure(api_key="AIzaSyAwQWWxSuY_6YlBF-UaGNnnIt3AyGFvA6o")
 user_name = 'Kishan'
 
 website = 'https://www.india.gov.in/my-government/schemes'
-# print('before rag')
+print('before rag and llm')
 # query_result = index.search_doc(query)
 # print('after rag')
 # context = ""
@@ -152,6 +152,10 @@ def llm_function(query):
             if(value>0.23):
                 context += key + " "
     if context == '':
+        with st.chat_message('user'):
+            st.markdown(query)
+        with st.chat_message('assistant'):
+            st.markdown('Iam sorry but Iam not able to help related to this query, can you please ask about some other schemes.')
         print('Is there anything else I can help you with?')
         return 
     else:

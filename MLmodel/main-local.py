@@ -7,9 +7,10 @@ import numpy as np
 import pickle
 import os
 import streamlit as st
+from googletrans import Translator
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
 import google.generativeai as genai
-
+translate = Translator()
 print('before class')
 class semanticEmbedding:
     def __init__(self, model_name='sentence-transformers/all-mpnet-base-v2'):
@@ -138,13 +139,19 @@ if 'messages' not in st.session_state:
     st.session_state.messages=[
         {
             "role":"assistant",
-            "content":"Ask me anything"
+            "content":"Tell about your situation and I will recomend you government schmes that might help you"
         }
     ]
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 def llm_function(query):
+    # Detect the language and save is for the destination language
+    lang = translate.detect(query).lang
+    # If not english then convert query to into the english.
+    if(lang != 'en'):
+        query = translate.translate(query, dest='en').text
+    print(query)
     query_result = index.search_doc(query)
     context = ""
     for i in range(5):
@@ -192,12 +199,16 @@ def llm_function(query):
 
         QUERY:${query}$ CONTEXT:${context}$'''
 
-        response = model.generate_content(formatted_response)
-        print(response.text)
+        response = model.generate_content(formatted_response).text
+        print(response)
+        # If not english then convert the response into the destination laguage
+        if(lang!='en'):
+            response = translate.translate(response, dest=lang).text
+        print(response)
         with st.chat_message('user'):
             st.markdown(query)
         with st.chat_message('assistant'):
-            st.markdown(response.text)
+            st.markdown(response)
         st.session_state.messages.append(
             {
                 'role':'user',
@@ -207,10 +218,10 @@ def llm_function(query):
         st.session_state.messages.append(
             {
                 'role':'assitant',
-                'content':response.text
+                'content':response
             }
         )
-query = st.chat_input("hey hey what's up big boi")
+query = st.chat_input("Tell me your issue, and I will recomend government scheme to you.")
 if query:
     llm_function(query)
     

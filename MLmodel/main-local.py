@@ -145,12 +145,14 @@ if 'messages' not in st.session_state:
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
-def llm_function(query):
+def llm_function(query1):
     # Detect the language and save is for the destination language
-    lang = translate.detect(query).lang
+    lang = translate.detect(query1).lang
     # If not english then convert query to into the english.
     if(lang != 'en'):
-        query = translate.translate(query, dest='en').text
+        query = translate.translate(query1, dest='en').text
+    else:
+        query = query1
     print(query)
     query_result = index.search_doc(query)
     context = ""
@@ -160,7 +162,7 @@ def llm_function(query):
                 context += key + " "
     if context == '':
         with st.chat_message('user'):
-            st.markdown(query)
+            st.markdown(query1)
         with st.chat_message('assistant'):
             st.markdown('Iam sorry but Iam not able to help related to this query, can you please ask about some other schemes.')
         print('Is there anything else I can help you with?')
@@ -206,13 +208,13 @@ def llm_function(query):
             response = translate.translate(response, dest=lang).text
         print(response)
         with st.chat_message('user'):
-            st.markdown(query)
+            st.markdown(query1)
         with st.chat_message('assistant'):
             st.markdown(response)
         st.session_state.messages.append(
             {
                 'role':'user',
-                'content':query
+                'content':query1
             }
         )
         st.session_state.messages.append(

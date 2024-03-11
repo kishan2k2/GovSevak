@@ -36,6 +36,12 @@ Run the following command to start the project:
 ```bash
 streamlit run MLmodel/main-local.py
 ```
+
+### Screen shot of the final product.
+![UI](Assets/UI.jpg)
+![English Query](Assets/englishQuery.jpg)
+![Hindi Query](Assets/hindiQuery.jpg)
+![Punjabi Query](Assets/PunjabiQuery.jpg)
 # NLP Minor Project: Bridging the Gap - Empowering Citizens with Government Welfare Schemes
 
 ## Project Overview

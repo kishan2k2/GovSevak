@@ -1,3 +1,41 @@
+## Getting Started
+
+Follow these steps to set up and run the project on your local machine.
+
+### Prerequisites
+
+Make sure you have the following installed on your machine:
+
+- [Python](https://www.python.org/downloads/)
+- [Git](https://git-scm.com/downloads/)
+
+### Installation
+
+1. Clone the repository to your local machine using the following command:
+
+    ```bash
+    git clone https://github.com/your-username/project.git
+    ```
+
+2. Navigate to the project directory:
+
+    ```bash
+    cd project
+    ```
+
+3. Install the required Python packages:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+### Usage
+
+Run the following command to start the project:
+
+```bash
+streamlit run MLmodel/main-local.py
+```
 # NLP Minor Project: Bridging the Gap - Empowering Citizens with Government Welfare Schemes
 
 ## Project Overview
